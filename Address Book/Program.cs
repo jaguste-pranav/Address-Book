@@ -43,17 +43,17 @@ namespace Address_Book
                 Console.Write("\n");
             }
 
+            Console.WriteLine("Details after editting details: ");
+
             foreach (var i in people)
             {
                 if(i.getFirstName().Equals("A"))
                 {
-                    i.setCity("Mumbai");
-                    i.setState("Maharashtra");
+                    people.Remove(i);
                 }
             }
 
-            Console.WriteLine("Details after editting details: ");
-            foreach (var i in people)
+                foreach (var i in people)
             {
                 Console.WriteLine(i.getFirstName());
                 Console.WriteLine(i.getLastName());
