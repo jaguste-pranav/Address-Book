@@ -35,7 +35,32 @@ namespace Address_Book
 
             foreach (var i in people)
             {
+                Console.WriteLine(i.getFirstName());
                 Console.WriteLine(i.getLastName());
+                Console.WriteLine(i.getCity());
+                Console.WriteLine(i.getState());
+                Console.WriteLine(i.getContactNo());
+                Console.Write("\n");
+            }
+
+            foreach (var i in people)
+            {
+                if(i.getFirstName().Equals("A"))
+                {
+                    i.setCity("Mumbai");
+                    i.setState("Maharashtra");
+                }
+            }
+
+            Console.WriteLine("Details after editting details: ");
+            foreach (var i in people)
+            {
+                Console.WriteLine(i.getFirstName());
+                Console.WriteLine(i.getLastName());
+                Console.WriteLine(i.getCity());
+                Console.WriteLine(i.getState());
+                Console.WriteLine(i.getContactNo());
+                Console.Write("\n");
             }
         }
     }
