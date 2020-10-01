@@ -24,9 +24,25 @@ namespace Address_Book
                             break;
                         }
 
+                    
 
+                    case (5):
+                        {
+                            break;
+                        }
+
+                    default:
+                        {
+                            Console.WriteLine("Please Select correct option");
+                            break;
+                        }
+                        
                 }
+                Console.WriteLine("Press your choice again");
+                choice = Convert.ToInt32(Console.ReadLine());
             }
+
+            
         }
     }
 }
