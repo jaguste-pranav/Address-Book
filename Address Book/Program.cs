@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Address_Book
 {
@@ -7,59 +8,134 @@ namespace Address_Book
     {
         static void Main(string[] args)
         {
-            Person person1 = new Person();
-            Person person2 = new Person();
+            int choice;
+            List<Person> people = new List<Person>(); ;
+            Console.WriteLine("Press 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit");
+            choice = Convert.ToInt32(Console.ReadLine());
 
-            person1.setFirstName("A");
-            person1.setLastName("Z");
-            person1.setAddress("xxx");
-            person1.setCity("C1");
-            person1.setState("S1");
-            person1.setContactNo(123);
-            person1.setZip(1);
-            person1.setEmailId("a.z@gmail.com");
-
-            person2.setFirstName("B");
-            person2.setLastName("Y");
-            person2.setAddress("xxx");
-            person2.setCity("C2");
-            person2.setState("S2");
-            person2.setContactNo(567);
-            person2.setZip(2);
-            person2.setEmailId("b.y@gmail.com");
-
-            List<Person> people = new List<Person>();
-
-            people.Add(person1);
-            people.Add(person2);
-
-            foreach (var i in people)
+            while (choice != 5)
             {
-                Console.WriteLine(i.getFirstName());
-                Console.WriteLine(i.getLastName());
-                Console.WriteLine(i.getCity());
-                Console.WriteLine(i.getState());
-                Console.WriteLine(i.getContactNo());
-                Console.Write("\n");
-            }
-
-            Console.WriteLine("Details after editting details: ");
-
-            foreach (var i in people)
-            {
-                if(i.getFirstName().Equals("A"))
+                switch (choice)
                 {
-                    people.Remove(i);
+                    case (1):
+                        {
+                            people = new List<Person>();
+                            Console.WriteLine("Address Book created!");
+                            break;
+                        }
+
+                    case (2):
+                        {
+                            Person person = new Person();
+                            Console.WriteLine("Enter the First Name: ");
+                            string firstName = Console.ReadLine();
+                            Console.WriteLine("Enter the Last Name: ");
+                            string lastName = Console.ReadLine();
+
+                            Console.WriteLine("Enter the Address: ");
+                            string address = Console.ReadLine();
+
+                            Console.WriteLine("Enter the City: ");
+                            string city = Console.ReadLine();
+
+                            Console.WriteLine("Enter the State: ");
+                            string state = Console.ReadLine();
+
+                            Console.WriteLine("Enter the Contact Details: ");
+                            int contactNo = Convert.ToInt32(Console.ReadLine());
+
+                            Console.WriteLine("Enter the Zip Code: ");
+                            int zip = Convert.ToInt32(Console.ReadLine());
+
+                            Console.WriteLine("Enter the email ID: ");
+                            string emailId = Console.ReadLine();
+
+                            person.setFirstName(firstName);
+                            person.setLastName(lastName);
+                            person.setAddress(address);
+                            person.setCity(city);
+                            person.setState(state);
+                            person.setContactNo(contactNo);
+                            person.setZip(zip);
+                            person.setEmailId(emailId);
+
+                            people.Add(person);
+                            break;
+                        }
+
+                    case (3):
+                        {
+                            Console.WriteLine("Enter the first name of Contact whose details you want to edit");
+                            string name = Console.ReadLine();
+                            bool recordFound = false;
+                            foreach (var i in people)
+                            {
+                                if (i.getFirstName().Equals(name))
+                                {
+                                    recordFound = true;
+                                    Console.WriteLine("Enter the new first name");
+                                    string newName = Console.ReadLine();
+                                    i.setFirstName(newName);
+                                    break;
+                                }
+                            }
+                            if (!recordFound)
+                            {
+                                Console.WriteLine("No record found.");
+                            }
+                            break;
+                        }
+
+                    case (4):
+                        {
+                            Console.WriteLine("Enter the first name of Contact whose details you want to delete");
+                            string name = Console.ReadLine();
+                            bool recordFound = false;
+                            foreach (var i in people)
+                            {
+                                if (i.getFirstName().Equals(name))
+                                {
+                                    recordFound = true;
+                                    people.Remove(i);
+                                    Console.WriteLine("Record deleted");
+                                    break;
+                                }
+                            }
+                            if (!recordFound)
+                            {
+                                Console.WriteLine("No record found.");
+                            }
+                            break;
+                        }
+
+
+                    case (5):
+                        {
+                            break;
+                        }
+
+                    default:
+                        {
+                            Console.WriteLine("Please Select correct option");
+                            break;
+                        }
+                        
                 }
+                Console.WriteLine("Press your choice again");
+                choice = Convert.ToInt32(Console.ReadLine());
             }
 
-                foreach (var i in people)
+            Console.WriteLine("The details of contacts in address are as follows: ");
+            foreach (var i in people)
             {
-                Console.WriteLine(i.getFirstName());
-                Console.WriteLine(i.getLastName());
-                Console.WriteLine(i.getCity());
-                Console.WriteLine(i.getState());
-                Console.WriteLine(i.getContactNo());
+                Console.WriteLine("First name - " + i.getFirstName());
+                Console.WriteLine("Last Name - " + i.getLastName());
+                Console.WriteLine("Address - " + i.getAddress());
+                Console.WriteLine("City - " + i.getCity());
+                Console.WriteLine("State - " + i.getState());
+                Console.WriteLine("Contact No - " + i.getContactNo());
+                Console.WriteLine("Zip Code - " + i.getZip());
+                Console.WriteLine("Email ID - " + i.getEmailId());
                 Console.Write("\n");
             }
         }
