@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace Address_Book
 {
@@ -7,60 +8,24 @@ namespace Address_Book
     {
         static void Main(string[] args)
         {
-            //Person person1 = new Person();
-            //Person person2 = new Person();
+            int choice;
+            List<Person> people = new List<Person>(); ;
+            Console.WriteLine("Press 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit");
+            choice = Convert.ToInt32(Console.ReadLine());
 
-            //person1.setFirstName("A");
-            //person1.setLastName("Z");
-            //person1.setAddress("xxx");
-            //person1.setCity("C1");
-            //person1.setState("S1");
-            //person1.setContactNo(123);
-            //person1.setZip(1);
-            //person1.setEmailId("a.z@gmail.com");
-            
-            //person2.setFirstName("B");
-            //person2.setLastName("Y");
-            //person2.setAddress("xxx");
-            //person2.setCity("C2");
-            //person2.setState("S2");
-            //person2.setContactNo(567);
-            //person2.setZip(2);
-            //person2.setEmailId("b.y@gmail.com");
+            while (choice != 5)
+            {
+                switch (choice)
+                {
+                    case (1):
+                        {
+                            people = new List<Person>();
+                            Console.WriteLine("Address Book created!");
+                            break;
+                        }
 
-            List<Person> people = new List<Person>();
 
-            //people.Add(person1);
-            //people.Add(person2);
-
-            //foreach (var i in people)
-            //{
-                //Console.WriteLine(i.getFirstName());
-                //Console.WriteLine(i.getLastName());
-                //Console.WriteLine(i.getCity());
-                //Console.WriteLine(i.getState());
-                //Console.WriteLine(i.getContactNo());
-                //Console.Write("\n");
-            //}
-
-            //Console.WriteLine("Details after editting details: ");
-
-            //foreach (var i in people)
-            //{
-                //if (i.getFirstName().Equals("A"))
-                //{
-                    //people.Remove(i);
-                //}
-            //}
-
-            //foreach (var i in people)
-            //{
-                //Console.WriteLine(i.getFirstName());
-                //Console.WriteLine(i.getLastName());
-                //Console.WriteLine(i.getCity());
-                //Console.WriteLine(i.getState());
-                //Console.WriteLine(i.getContactNo());
-                //Console.Write("\n");
+                }
             }
         }
     }
