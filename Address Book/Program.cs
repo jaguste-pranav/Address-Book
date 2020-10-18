@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using System.Runtime.Loader;
 
 namespace Address_Book
 {
@@ -10,7 +11,7 @@ namespace Address_Book
         {
             int choice;
             Dictionary<string, List<Person>> dict = new Dictionary<string, List<Person>>();
-            Console.WriteLine("Press 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit");
+            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State");
             choice = Convert.ToInt32(Console.ReadLine());
 
             while (choice != 5)
@@ -100,6 +101,27 @@ namespace Address_Book
 
                     case (5):
                         {
+                            break;
+                        }
+
+                    case (6):
+                        {
+                            Console.WriteLine("Enter the name of city or state: ");
+                            string location = Console.ReadLine();
+                            foreach (string Key in dict.Keys)
+                            {
+                                Console.WriteLine("For Address Book "+Key+" the contact Info is: \n");
+                                foreach (var i in dict[Key])
+                                {
+                                    if(i.getCity().Equals(location) || i.getState().Equals(location))
+                                    {
+                                        Console.WriteLine("First name - " + i.getFirstName());
+                                        Console.WriteLine("Last Name - " + i.getLastName());
+                                    }
+                                    Console.Write("\n");
+                                }
+                                Console.WriteLine("******************************************************");
+                            }
                             break;
                         }
 
