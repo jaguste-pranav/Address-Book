@@ -40,41 +40,55 @@ namespace Address_Book
 
                             if (dict.ContainsKey(addressBookAdd))
                             {
+                                bool recordWithSameNameFound = false;
                                 Person person = new Person();
                                 Console.WriteLine("Enter the First Name: ");
                                 string firstName = Console.ReadLine();
                                 Console.WriteLine("Enter the Last Name: ");
                                 string lastName = Console.ReadLine();
 
-                                Console.WriteLine("Enter the Address: ");
-                                string address = Console.ReadLine();
+                                foreach (var i in dict[addressBookAdd])
+                                {
+                                    if (i.getFirstName().Equals(firstName) && i.getLastName().Equals(lastName))
+                                    {
+                                        Console.WriteLine("Error! Person with same record found in Address Book");
+                                        recordWithSameNameFound = true;
+                                        break;
+                                    }
+                                }
 
-                                Console.WriteLine("Enter the City: ");
-                                string city = Console.ReadLine();
+                                if (!recordWithSameNameFound)
+                                {
+                                    Console.WriteLine("Enter the Address: ");
+                                    string address = Console.ReadLine();
 
-                                Console.WriteLine("Enter the State: ");
-                                string state = Console.ReadLine();
+                                    Console.WriteLine("Enter the City: ");
+                                    string city = Console.ReadLine();
 
-                                Console.WriteLine("Enter the Contact Details: ");
-                                int contactNo = Convert.ToInt32(Console.ReadLine());
+                                    Console.WriteLine("Enter the State: ");
+                                    string state = Console.ReadLine();
 
-                                Console.WriteLine("Enter the Zip Code: ");
-                                int zip = Convert.ToInt32(Console.ReadLine());
+                                    Console.WriteLine("Enter the Contact Details: ");
+                                    int contactNo = Convert.ToInt32(Console.ReadLine());
 
-                                Console.WriteLine("Enter the email ID: ");
-                                string emailId = Console.ReadLine();
+                                    Console.WriteLine("Enter the Zip Code: ");
+                                    int zip = Convert.ToInt32(Console.ReadLine());
 
-                                person.setFirstName(firstName);
-                                person.setLastName(lastName);
-                                person.setAddress(address);
-                                person.setCity(city);
-                                person.setState(state);
-                                person.setContactNo(contactNo);
-                                person.setZip(zip);
-                                person.setEmailId(emailId);
+                                    Console.WriteLine("Enter the email ID: ");
+                                    string emailId = Console.ReadLine();
 
-                            
-                                dict[addressBookAdd].Add(person);
+                                    person.setFirstName(firstName);
+                                    person.setLastName(lastName);
+                                    person.setAddress(address);
+                                    person.setCity(city);
+                                    person.setState(state);
+                                    person.setContactNo(contactNo);
+                                    person.setZip(zip);
+                                    person.setEmailId(emailId);
+
+
+                                    dict[addressBookAdd].Add(person);
+                                }
                             }
                             else
                             {
@@ -96,8 +110,10 @@ namespace Address_Book
                         }
                         
                 }
-                Console.WriteLine("Press your choice again\n");
+                Console.WriteLine("______________________________________________________________________________________");
+                Console.WriteLine("Press your choice again");
                 choice = Convert.ToInt32(Console.ReadLine());
+                
             }
 
             Console.WriteLine("\nThe details of contacts in address are as follows: ");
