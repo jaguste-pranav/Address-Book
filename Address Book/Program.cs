@@ -108,18 +108,23 @@ namespace Address_Book
                         {
                             Console.WriteLine("Enter the name of city or state: ");
                             string location = Console.ReadLine();
+                            int counter = 0;
                             foreach (string Key in dict.Keys)
                             {
+                                counter = 0;
                                 Console.WriteLine("For Address Book "+Key+" the contact Info is: \n");
                                 foreach (var i in dict[Key])
                                 {
                                     if(i.getCity().Equals(location) || i.getState().Equals(location))
                                     {
+                                        counter++;
                                         Console.WriteLine("First name - " + i.getFirstName());
                                         Console.WriteLine("Last Name - " + i.getLastName());
                                     }
                                     Console.Write("\n");
                                 }
+                                
+                                Console.WriteLine("For "+location+" the number of people found in Address Book "+Key+" is "+counter);
                                 Console.WriteLine("******************************************************");
                             }
                             break;
