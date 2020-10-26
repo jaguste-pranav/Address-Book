@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "83CKb1X+dZi2XIsXyZ6IUNGoyEdoUp4AaDeRkSqOSynnFpjmpMTMl4i5RiIl/noJm6rRXKVKDt7um8keXqTlTg==",
+  "dgSpecHash": "nUQQjgweEd01cUbdmeeGjzKvjjWAUBfQqnJgnK9X8SN381q/G3weKHoJaklzTGhcSNyhaPP4+98t/PxS3+B8vw==",
   "success": true,
   "projectFilePath": "C:\\Users\\Pranav V Jaguste\\source\\repos\\Address Book\\Address Book\\Address Book.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Pranav V Jaguste\\.nuget\\packages\\csvhelper\\15.0.8\\csvhelper.15.0.8.nupkg.sha512",
+    "C:\\Users\\Pranav V Jaguste\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512"
+  ],
   "logs": []
 }

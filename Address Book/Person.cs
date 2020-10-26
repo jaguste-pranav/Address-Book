@@ -84,5 +84,18 @@ namespace Address_Book
         {
             return this.emailId;
         }
+
+        public void SortByCity(List<Person> person)
+        {
+            person.Sort((contact1, contact2) => contact1.city.CompareTo(contact2.city));
+        }
+        public void SortByState(List<Person> person)
+        {
+            person.Sort((contact1, contact2) => contact1.state.CompareTo(contact2.state));
+        }
+        public void SortByZip(List<Person> person)
+        {
+            person.Sort((contact1, contact2) => contact1.zip.CompareTo(contact2.zip));
+        }
     }
 }
