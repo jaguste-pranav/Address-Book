@@ -11,7 +11,7 @@ namespace Address_Book
         {
             int choice;
             Dictionary<string, List<Person>> dict = new Dictionary<string, List<Person>>();
-            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State");
+            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State\n 7 for writing to file");
             choice = Convert.ToInt32(Console.ReadLine());
 
             while (choice != 5)
@@ -125,6 +125,31 @@ namespace Address_Book
                                 }
                                 
                                 Console.WriteLine("For "+location+" the number of people found in Address Book "+Key+" is "+counter);
+                                Console.WriteLine("******************************************************");
+                            }
+                            break;
+                        }
+
+                    case (7):
+                        {
+                            
+                            Console.WriteLine("Enter the name of city or state: ");
+                            string location = Console.ReadLine();
+                            int counter = 0;
+                            foreach (string Key in dict.Keys)
+                            {
+                                counter = 0;
+                                Console.WriteLine("For Address Book " + Key + " the contact Info is: \n");
+                                foreach (var i in dict[Key])
+                                {
+                                    if (i.getCity().Equals(location) || i.getState().Equals(location))
+                                    {
+                                        WriteToFile.WriteFile(i);
+                                    }
+                                    Console.Write("\n");
+                                }
+
+                                Console.WriteLine("For " + location + " the number of people found in Address Book " + Key + " is " + counter);
                                 Console.WriteLine("******************************************************");
                             }
                             break;
