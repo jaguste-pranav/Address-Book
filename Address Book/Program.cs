@@ -140,7 +140,62 @@ namespace Address_Book
                             }
                             break;
                         }
+                    case (8):
+                        {
+                            Console.WriteLine("Sorting according to City: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.getCity().CompareTo(person2.getCity()));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
 
+                    case (9):
+                        {
+                            Console.WriteLine("Sorting according to State: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.getState().CompareTo(person2.getState()));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
+
+                    case (10):
+                        {
+                            Console.WriteLine("Sorting according to Zip: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.getZip().CompareTo(person2.getZip()));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
+
+                    case (11):
+                        {
+                            Console.WriteLine("Enter the name of city or state: ");
+                            string location = Console.ReadLine();
+                            int counter = 0;
+                            foreach (string Key in dict.Keys)
+                            {
+                                counter = 0;
+                                Console.WriteLine("For Address Book " + Key + " the contact Info is: \n");
+                                foreach (var person in dict[Key])
+                                {
+                                    if (person.getCity().Equals(location) || person.getState().Equals(location))
+                                    {
+                                        WriteToFile.WriteFile(person);
+                                    }
+                                    Console.Write("\n");
+                                }
+
+                                Console.WriteLine("For " + location + " the number of people found in Address Book " + Key + " is " + counter);
+                                Console.WriteLine("******************************************************");
+                            }
+                            break;
+                        }
                     default:
                         {
                             Console.WriteLine("Please Select correct option");
