@@ -15,7 +15,7 @@ namespace Address_Book
             {
                 using (StreamWriter sr = File.AppendText(pathToFile))
                 {
-                    sr.WriteLine(p.getFirstName() + " " + p.getLastName() + " " + p.getAddress() + " " + p.getCity() + " " + p.getState() + " " + p.getZip());
+                    sr.WriteLine(p.getFirstName() + "," + p.getLastName() + "," + p.getAddress() + "," + p.getCity() + "," + p.getState() + "," + p.getZip());
                     sr.Close();
                 }
                 Console.WriteLine("Written to file successfully");
