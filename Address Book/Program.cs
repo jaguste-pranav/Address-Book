@@ -11,7 +11,7 @@ namespace Address_Book
         {
             int choice;
             Dictionary<string, List<Person>> dict = new Dictionary<string, List<Person>>();
-            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State\n 7 For displaying contacts City Wise\n 8 For displaying contacts State Wise\n 9 For displaying contacts Zip Wise\n 10 For displaying contacts Name Wise\n  11 for writing to file");
+            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State\n 7 For displaying contacts City Wise\n 8 For displaying contacts State Wise\n 9 For displaying contacts Zip Wise\n 10 For displaying contacts Name Wise\n 11 for writing to file\n 12 for writing to CSV file\n 13 for writing to Json file");
             choice = Convert.ToInt32(Console.ReadLine());
 
             while (choice != 5)
@@ -198,6 +198,12 @@ namespace Address_Book
                     case (12):
                         {
                             WriteToFile.WriteToCsv(dict);
+                            break;
+                        }
+
+                    case (13):
+                        {
+                            WriteToFile.WriteToJson(dict);
                             break;
                         }
                     default:

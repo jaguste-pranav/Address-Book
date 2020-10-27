@@ -5,6 +5,7 @@ using System.IO;
 using CsvHelper;
 using System.Globalization;
 using System.Linq;
+using Newtonsoft.Json;
 
 namespace Address_Book
 {
@@ -32,7 +33,6 @@ namespace Address_Book
         public static void WriteToCsv(Dictionary<string, List<Person>> dict)
         {
             string filePathCSV = @"C:\Users\Pranav V Jaguste\source\repos\Address Book\Address Book\Person.csv";
-
             foreach (string Key in dict.Keys)
             {
                 string bookName = Key;
@@ -46,6 +46,23 @@ namespace Address_Book
                 }
 
             }
+        }
+
+        public static void WriteToJson(Dictionary<string, List<Person>> dict)
+        {
+            string filePathJson = @"C:\Users\Pranav V Jaguste\source\repos\Address Book\Address Book\Person.json";
+            foreach (string Key in dict.Keys)
+            {
+                string bookName = Key;
+                List<Person> contacts = dict[Key];
+                JsonSerializer jsonSerializer = new JsonSerializer();
+
+                using (StreamWriter stw = new StreamWriter(filePathJson))
+                {
+                    jsonSerializer.Serialize(stw, contacts);
+                }
+            }
+            
         }
     }
 }
