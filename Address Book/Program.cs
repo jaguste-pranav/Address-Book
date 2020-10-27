@@ -11,7 +11,7 @@ namespace Address_Book
         {
             int choice;
             Dictionary<string, List<Person>> dict = new Dictionary<string, List<Person>>();
-            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State\n 7 for writing to file");
+            Console.WriteLine("Press\n 1 for creating Address Book\n 2 for Adding New Person\n 3 for Editing Details\n 4 for Deleting Contact\n 5 For exit\n 6 for search by City or State\n 7 For displaying contacts City Wise\n 8 For displaying contacts State Wise\n 9 For displaying contacts Zip Wise\n 10 For displaying contacts Name Wise\n  11 for writing to file");
             choice = Convert.ToInt32(Console.ReadLine());
 
             while (choice != 5)
@@ -25,7 +25,7 @@ namespace Address_Book
                             string addressBookName = Console.ReadLine();
                             dict.Add(addressBookName, list);
 
-                            Console.WriteLine("Address Book with name "+ addressBookName+" created!!");
+                            Console.WriteLine("Address Book with name " + addressBookName + " created!!");
                             break;
                         }
 
@@ -50,7 +50,7 @@ namespace Address_Book
 
                                 foreach (var i in dict[addressBookAdd])
                                 {
-                                    if (i.getFirstName().Equals(firstName) && i.getLastName().Equals(lastName))
+                                    if (i.firstName.Equals(firstName) && i.lastName.Equals(lastName))
                                     {
                                         Console.WriteLine("Error! Person with same record found in Address Book");
                                         recordWithSameNameFound = true;
@@ -78,14 +78,14 @@ namespace Address_Book
                                     Console.WriteLine("Enter the email ID: ");
                                     string emailId = Console.ReadLine();
 
-                                    person.setFirstName(firstName);
-                                    person.setLastName(lastName);
-                                    person.setAddress(address);
-                                    person.setCity(city);
-                                    person.setState(state);
-                                    person.setContactNo(contactNo);
-                                    person.setZip(zip);
-                                    person.setEmailId(emailId);
+                                    person.firstName = firstName;
+                                    person.lastName = lastName;
+                                    person.address = address;
+                                    person.city = city;
+                                    person.state = state;
+                                    person.contactNo = contactNo;
+                                    person.zipCode = zip;
+                                    person.emailId =emailId;
 
 
                                     dict[addressBookAdd].Add(person);
@@ -112,39 +112,14 @@ namespace Address_Book
                             foreach (string Key in dict.Keys)
                             {
                                 counter = 0;
-                                Console.WriteLine("For Address Book "+Key+" the contact Info is: \n");
-                                foreach (var i in dict[Key])
-                                {
-                                    if(i.getCity().Equals(location) || i.getState().Equals(location))
-                                    {
-                                        counter++;
-                                        Console.WriteLine("First name - " + i.getFirstName());
-                                        Console.WriteLine("Last Name - " + i.getLastName());
-                                    }
-                                    Console.Write("\n");
-                                }
-                                
-                                Console.WriteLine("For "+location+" the number of people found in Address Book "+Key+" is "+counter);
-                                Console.WriteLine("******************************************************");
-                            }
-                            break;
-                        }
-
-                    case (7):
-                        {
-                            
-                            Console.WriteLine("Enter the name of city or state: ");
-                            string location = Console.ReadLine();
-                            int counter = 0;
-                            foreach (string Key in dict.Keys)
-                            {
-                                counter = 0;
                                 Console.WriteLine("For Address Book " + Key + " the contact Info is: \n");
                                 foreach (var i in dict[Key])
                                 {
-                                    if (i.getCity().Equals(location) || i.getState().Equals(location))
+                                    if (i.city.Equals(location) || i.state.Equals(location))
                                     {
-                                        WriteToFile.WriteFile(i);
+                                        counter++;
+                                        Console.WriteLine("First name - " + i.firstName);
+                                        Console.WriteLine("Last Name - " + i.lastName);
                                     }
                                     Console.Write("\n");
                                 }
@@ -155,17 +130,87 @@ namespace Address_Book
                             break;
                         }
 
+                    case (7):
+                        {
+                            Console.WriteLine("Sorting according to Name: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.firstName.CompareTo(person2.firstName));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
+                    case (8):
+                        {
+                            Console.WriteLine("Sorting according to City: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.city.CompareTo(person2.city));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
+
+                    case (9):
+                        {
+                            Console.WriteLine("Sorting according to State: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.state.CompareTo(person2.state));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
+
+                    case (10):
+                        {
+                            Console.WriteLine("Sorting according to Zip: ");
+                            foreach (string Key in dict.Keys)
+                            {
+                                dict[Key].Sort((person1, person2) => person1.zipCode.CompareTo(person2.zipCode));
+                                PrintList(dict[Key]);
+                            }
+                            break;
+                        }
+
+                    case (11):
+                        {
+                            Console.WriteLine("Enter the name of city or state: ");
+                            string location = Console.ReadLine();
+                            int counter = 0;
+                            foreach (string Key in dict.Keys)
+                            {
+                                counter = 0;
+                                Console.WriteLine("For Address Book " + Key + " the contact Info is: \n");
+                                foreach (var person in dict[Key])
+                                {
+                                    
+                                    WriteToFile.WriteFile(person);
+                                    Console.Write("\n");
+                                }
+
+                                Console.WriteLine("For " + location + " the number of people found in Address Book " + Key + " is " + counter);
+                                Console.WriteLine("******************************************************");
+                            }
+                            break;
+                        }
+
+                    case (12):
+                        {
+                            WriteToFile.WriteToCsv(dict);
+                            break;
+                        }
                     default:
                         {
                             Console.WriteLine("Please Select correct option");
                             break;
                         }
-                        
+
                 }
                 Console.WriteLine("______________________________________________________________________________________");
                 Console.WriteLine("Press your choice again");
                 choice = Convert.ToInt32(Console.ReadLine());
-                
+
             }
 
             Console.WriteLine("\nThe details of contacts in address are as follows: ");
@@ -176,17 +221,20 @@ namespace Address_Book
             }
             Console.WriteLine("Enter the name of address book you want to print");
             string addressbookname = Console.ReadLine();
-
-            foreach (var i in dict[addressbookname])
-            { 
-                Console.WriteLine("First name - " + i.getFirstName());
-                Console.WriteLine("Last Name - " + i.getLastName());
-                Console.WriteLine("Address - " + i.getAddress());
-                Console.WriteLine("City - " + i.getCity());
-                Console.WriteLine("State - " + i.getState());
-                Console.WriteLine("Contact No - " + i.getContactNo());
-                Console.WriteLine("Zip Code - " + i.getZip());
-                Console.WriteLine("Email ID - " + i.getEmailId());
+            PrintList(dict[addressbookname]);
+        }
+        public static void PrintList(List<Person> p)
+        {
+            foreach (var person in p)
+            {
+                Console.WriteLine("First name - " + person.firstName);
+                Console.WriteLine("Last Name - " + person.lastName);
+                Console.WriteLine("Address - " + person.address);
+                Console.WriteLine("City - " + person.city);
+                Console.WriteLine("State - " + person.state);
+                Console.WriteLine("Contact No - " + person.contactNo);
+                Console.WriteLine("Zip Code - " + person.zipCode);
+                Console.WriteLine("Email ID - " + person.emailId);
                 Console.Write("\n");
             }
         }
