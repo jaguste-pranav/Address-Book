@@ -59,6 +59,20 @@ namespace AddressBookTest
             Assert.AreEqual(expected, actual);
         }
 
+        [TestMethod]
+        public void AddContact()
+        {
+            bool expected = true;
+            ContactsDB contactDetails = new ContactsDB();
+            contactDetails.first_name = "Rakesh";
+            contactDetails.last_name = "Sharma";
+            contactDetails.Book_Name = "Book4";
+            contactDetails.Contact_Type = "Family";
+            contactDetails.B_ID = "BK4";
+            AddressBookRepoDB addressBookRepoDB = new AddressBookRepoDB();
+            bool actual = addressBookRepoDB.AddContactDetailsInDB(contactDetails);
+            Assert.AreEqual(expected, actual);
+        }
     }
 
 }
